@@ -40,6 +40,8 @@ program collatz
       print*, PosArray(k), StepsArray(k)
     enddo
 
+
+    !!Prints order of bubblesort
     call Bubble_Sort(PosArray, StepsArray) !!Orders by magnitude
     do k = 1,10
       print*, PosArray(k), StepsArray(k)
