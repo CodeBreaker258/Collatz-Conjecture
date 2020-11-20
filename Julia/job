@@ -1,0 +1,1 @@
+julia --load collatz.jl >results
