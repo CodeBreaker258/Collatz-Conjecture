@@ -22,6 +22,7 @@ func main() {
 		bubblesort(StepsArray, PosArray) //Calls the bubble sort method
 	}
 	//Prints the arrays based on the sorting of the steps
+	fmt.Println("Here are the Top 10 based on Steps: 1st Array is Position, 2nd array is Steps")
 	fmt.Println(PosArray) 
 	fmt.Println(StepsArray)
 	fmt.Println("                            ")

@@ -8,14 +8,13 @@ julia>StepsArray = [0,0,0,0,0,0,0,0,0,0]
 max = 5000
 #Major Loop for Placing Values in the aays
 for i =1:max
-    comp= collatz(i)
+    comp= collatz
     if comp > StepsArray[0] && !(InArray(comp,StepsArray))
         PosArray[0] = i
         StepsArray[0] = comp
     end 
     bubblesort(StepsArray, PosArray)
 end
-
 println("Here are the Top 10 based on Steps: 1st Array is Position, 2nd array is Steps")
 println(PosArray)
 println(StepsArray)
@@ -25,10 +24,6 @@ bubblesort(PosArray, StepsArray)
 println("Here are the Top 10 based on Magnitude of Position: 1st Array is Position, 2nd array is Steps")
 println(PosArray)
 println(StepsArray)
-
-
-
-
 
 
 function collatz(n)
