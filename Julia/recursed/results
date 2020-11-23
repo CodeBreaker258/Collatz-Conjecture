@@ -1,0 +1,7 @@
+Here are the Top 10 based on Steps: 1st Array is Position, 2nd array is Steps
+[5567, 3711, 7422, 9887, 6591, 8959, 7963, 6943, 9257, 6171]
+[235, 237, 238, 241, 243, 246, 251, 256, 259, 261]
+                              
+Here are the Top 10 based on Magnitude of Position: 1st Array is Position, 2nd array is Steps
+[3711, 5567, 6171, 6591, 6943, 7422, 7963, 8959, 9257, 9887]
+[237, 235, 261, 243, 256, 238, 251, 246, 259, 241]
