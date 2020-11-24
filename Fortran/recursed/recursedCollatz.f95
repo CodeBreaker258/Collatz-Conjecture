@@ -4,7 +4,7 @@ program collatz
   implicit none
 
     !!Defining Global Variables
-    integer(kind = 8) :: collatz_calculation
+    integer(kind = 8) :: collatzCalc
     integer(8), dimension(10):: PosArray, StepsArray
     integer(kind=8):: n, max = 5e9, comp, k, m
     
@@ -25,7 +25,7 @@ program collatz
 
     !!Storing Loop of values and sequences in Arrays
     do n = 1, max
-      comp= collatz_calculation(n)
+      comp= collatzCalc(n)
       if(comp .gt. StepsArray(1)) then
           PosArray(1)= n
           StepsArray(1) =comp
@@ -49,22 +49,24 @@ program collatz
 
 end program collatz
 
- recursive function collatz_calculation(in) result(csteps)
-    implicit none
-    integer(kind = 8), intent(in) :: in
-    integer(kind = 8) :: csteps, i
-    i =in !! Sets the input as the i value
-    csteps = 0 !!Sets the number of sets right out as zero since 1 is the first value
-  do while ( i /= 1 )  
-    if ( mod(i,2) == 1 ) then   ! If odd multiply by 3 and add 1
-        i = (i * 3 + 1)
-     csteps = csteps + collatz_calculation(i)   
-    else
-        i = i / 2 !!If even, dividfr by 2
-        csteps = csteps + collatz_calculation(i)
-    endif
-  enddo
-end function collatz_calculation
+recursive function collatzCalc(in) result(csteps)    ! functions that computes the collatz sequence length for a given n
+    integer(kind=8), intent(in)    :: in   ! the integer to be evaluated
+    integer(kind =8):: csteps,i
+
+    i = in
+    
+    if (i .eq. 1) then  !!If i is ever 1
+        csteps = 0
+        return
+    end if
+    if (mod(i, 2) .eq. 1) then    ! if n is odd
+        i = 3*i + 1
+        csteps = 1 + collatzCalc(i)    !!recursive for 
+    else   ! if i is even
+        i = i / 2
+        csteps = 1 + collatzCalc(i)  ! increment csteps and recur
+    end if
+end function collatzCalc
 
 SUBROUTINE Bubble_Sort(a,b) 
   integer(8), INTENT(in out), DIMENSION(:) :: a, b
