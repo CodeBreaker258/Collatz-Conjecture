@@ -16,17 +16,30 @@
 	(pos 0)
 	(NumberSteps 0)
 )
-(setf StepArray(make-array 10))
+(setf StepArray(make-array '(500)))
 
-(defun collatz(n csteps)
-    (loop while (/= n 1) do           ; If n is not equal to 1
-        (if (= (mod n 2) 1)         
-            (setq n (+ (* 3 n) 1))    ; If off
-            (setq n (/ n 2))          ;If even
+(defun collatz(pos csteps)
+(if(eq pos 1) ;;If the position is 1
+    (return from collatz(collatz pos csteps))
+    (progn
+        (if(eq(mod pos 2) 1)
+            (progn
+                (setq csteps(+(* 3 pos) 1 ))
+                (setq csteps(+ csteps 1))
+                (return-from collatz(collatz pos csteps))
+            )
+        
+        (progn ;;else
+            (setq csteps(/ pos 2 ))
+            (setq csteps(+ csteps 1))
+            (return-from collatz(collatz pos csteps))
+        
+        
+        
         )
-        (setq csteps (+ csteps 1))    ;Incrments 
+        )
     )
-    (return-from collatz csteps)
+    )
 )
 
 (setf i 2)
@@ -34,5 +47,5 @@
 	(setf steps (collatz i steps))
 	(setf (aref StepArray (i)) (make-CollatzTuple :pos i :NumberSteps steps))
 	(setf i (+ i 1))
-	(when (> i 10) (return))
+	(when (> i 500) (return))
 )
