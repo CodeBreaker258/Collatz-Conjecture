@@ -16,7 +16,7 @@
 )
 
 ;;Creation of the array
-(setq SArray (make-array '(50)))
+(setq SArray (make-array '(500)))
 
 ;;Function to calculate collatz
 (defun collatz( pos csteps )
@@ -38,14 +38,9 @@
     (setf SArray (make-CollatzTuple :pos i :nsteps csteps)) ;;Sets it to the array
     (print SArray)
 	(setf i (+ i 1)) ;;Incrementing the counter
-	(when (> i 50) (return)) ;; When i is greater than the maxVal
+	(when (> i 500) (return)) ;; When i is greater than the maxVal
 )
 
-(setf i 1)
-(loop
-    (setf j i)
-    (setf k (+ j 1))
-    (if(< Co))
 
 
 
