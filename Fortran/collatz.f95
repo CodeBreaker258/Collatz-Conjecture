@@ -6,7 +6,7 @@ program collatz
     !!Defining Global Variables
     integer(kind = 8) :: collatz_calculation
     integer(8), dimension(10):: PosArray, StepsArray
-    integer(kind=8):: n, max = 1e9, comp, k, m
+    integer(kind=8):: n, max = 5e9, comp, k, m
     
     interface
       SUBROUTINE Bubble_Sort(a,b) 

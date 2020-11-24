@@ -6,7 +6,6 @@
 (setf csteps 0)
 (defvar comp) ;;Calculation of the Collatz Sequence for i
 (defvar i) ;;Iterator value
-(defvar j)
 (defvar SArray) ;;Array to create all the values
 
 ;;Creates an ordered pair that can hold both position and NumberSteps of the sequence
