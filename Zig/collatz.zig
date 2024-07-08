@@ -1,7 +1,7 @@
 const std = @import("std");
 
 fn collatz(n: u64, counter: u64) u64 {
-    var localCounter = counter + 1;
+    const localCounter = counter + 1;
     std.debug.print("{}: {}\n", .{ counter, n });
     if (n == 1) {
         return localCounter;
