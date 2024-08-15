@@ -1,29 +1,48 @@
 const std = @import("std");
-const print = std.debug.print;
 
 fn collatz(n: u64) u64 {
-    var collatzSteps: u64 = 0;
+    std.log.info("collatz called with n: {d}", .{n});
+    var steps: u64 = 0;
     var current = n;
     while (current != 1) {
-        if (current % 2 == 1) {
-            current = 3 * current + 1;
-        } else {
+        if (current % 2 == 0) {
             current /= 2;
+        } else {
+            current = 3 * current + 1;
         }
-        collatzSteps += 1;
+        steps += 1;
+        std.log.info("Intermediate value: {d}, count: {d}", .{ current, steps });
     }
-    return collatzSteps;
+    return steps;
 }
-fn isInArray(newNum: u64, collatzSteps: [10]u64) bool {
-    var arraySize: u64 = 0;
-    arraySize = collatzSteps.len;
 
-    for (0..arraySize) |j| {
-        if (j == newNum) {
+fn isInArray(newNum: u64, collatzSteps: [10]u64) bool {
+    for (collatzSteps) |step| {
+        if (step == newNum) {
             return true;
         }
     }
     return false;
+}
+
+fn sortArrays(posArray: *[10]u64, stepsArray: *[10]u64) void {
+    var swapped: bool = true;
+    while (swapped) {
+        swapped = false;
+        for (0..9) |i| {
+            if (stepsArray[i] < stepsArray[i + 1]) {
+                const tempStep = stepsArray[i];
+                stepsArray[i] = stepsArray[i + 1];
+                stepsArray[i + 1] = tempStep;
+
+                const tempPos = posArray[i];
+                posArray[i] = posArray[i + 1];
+                posArray[i + 1] = tempPos;
+
+                swapped = true;
+            }
+        }
+    }
 }
 
 pub fn main() void {
@@ -33,12 +52,13 @@ pub fn main() void {
 
     for (0..maxValue) |n| {
         const comp = collatz(n);
-        if (comp > stepsArray[0] and (!isInArray(comp, stepsArray))) {
-            posArray[0] = n;
-            stepsArray[0] = comp;
+        if (comp > stepsArray[9] and (!isInArray(comp, stepsArray))) {
+            posArray[9] = n;
+            stepsArray[9] = comp;
+            sortArrays(&posArray, &stepsArray);
         }
     }
-    //Sorting Function
-    print("posArray, {any}\n", .{posArray});
-    print("stepsArray, {any}\n", .{stepsArray});
+
+    std.log.info("posArray: {any}\n", .{posArray});
+    std.log.info("stepsArray: {any}\n", .{stepsArray});
 }
